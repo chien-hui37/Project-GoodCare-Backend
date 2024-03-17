@@ -17,4 +17,18 @@ member.get('/',function(req,res){
     })
 })
 
+member.post('/',function(req,res){
+    const { name , birthday, gender, email, address, tel, account , pwd} = req.body
+    console.log(req.body)
+    const sql = 'insert into member (name , birthday, gender, email, address, tel, account , pwd) values (?,?,?,?,?,?,?,?)';
+    conn.query(sql,[name , birthday, gender, email, address, tel, account , pwd],function(err,result){
+        if (err) {
+            console.error(err);
+            res.send('Error inserting data into database');
+            return;
+        }
+    })
+    res.send('ok')
+})
+
 module.exports = member;

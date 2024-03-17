@@ -10,6 +10,7 @@ app.listen(8000)
 
 var news = require('./router/news')
 var product = require('./router/product')
+var member = require('./router/member')
 var editmember = require('./router/editmember')
 var newordercontact = require('./router/newordercontact')
 var neworderproduct = require('./router/neworderproduct')
@@ -20,6 +21,7 @@ app.use('/news',news)
 // app.use('/policy',policy)
 // app.use('/longcarelocation',longcarelocation)//
 app.use('/product',product)
+app.use('/member',member)
 
 
 // app.use('/editmember',editmember)
