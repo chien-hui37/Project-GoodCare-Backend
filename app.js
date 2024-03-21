@@ -8,9 +8,14 @@ require('dotenv').config()
 app.use(bp.urlencoded({extended:true}));
 app.use(express.json())
 app.use(express.static('public'))
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000', // 允許來自這個源的請求
+    credentials: true // 允許包含認證的請求
+  }))
 // {origin: 'http://localhost:3000',credentials: true}
-app.listen(8000)
+app.listen(8000,()=>{
+    console.log('Server is running 8000')
+})
 
 var news = require('./router/news')
 var product = require('./router/product')

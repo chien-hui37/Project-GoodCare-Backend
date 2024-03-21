@@ -22,7 +22,7 @@ member.get('/',function(req,res){
     })
 })
 
-member.post('/',function(req,res){
+member.post('/register',function(req,res){
     const { name , birthday, gender, email, address, tel, account , pwd} = req.body
     // console.log(req.body)
     const sql = 'insert into member (name , birthday, gender, email, address, tel, account , pwd) values (?,?,?,?,?,?,?,?)';
@@ -58,7 +58,7 @@ member.post('/login',(req,res) => {
     const pwd = req.body.pwd
     conn.query(
         'select * from member where account= ? and pwd = ?',[account,pwd],function(err,result){
-            if(err){
+            if(result){
                 res.send('account or paasword no correct')
                 return
             }
@@ -88,7 +88,7 @@ function authenticateToken(req,res,next){
 }
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '600s'})
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '7200s'})
 }
 
 member.post('/modify',function(req,res){
