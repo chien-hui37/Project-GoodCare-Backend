@@ -35,10 +35,7 @@ member.post('/',function(req,res){
     })
     res.send('ok')
 })
-var post = [{
-    account:"Abc1234",
-    tel:"02"
-}]
+
 
 /////////////////
 member.get('/login',authenticateToken,(req,res) => {
@@ -78,8 +75,25 @@ function authenticateToken(req,res,next){
 }
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '120s'})
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '600s'})
 }
+
+member.post('/modify',function(req,res){
+    const {account,removePwd} = req.body
+    const pwd = removePwd
+    console.log(account,pwd)
+    conn.query('update member set pwd = ? where account = ?',[pwd,account],function(err,result){
+        if (err) {
+            console.log('update err');
+            // res.send('Error inserting data into database');
+            return;
+        }
+        else{
+            console.log(result)
+            console.log('member update')
+        }
+    })
+})
 
 
 
