@@ -55,12 +55,25 @@ member.get('/login',authenticateToken,(req,res) => {
 
 member.post('/login',(req,res) => {
     const account = req.body.account
-    const user = {name:account}
-    const accessToken = generateAccessToken(user)
-    // jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
-    const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
-    res.json({accessToken:accessToken , refreshToken:refreshToken})
-    console.log(user)
+    const pwd = req.body.pwd
+    conn.query(
+        'select * from member where account= ? and pwd = ?',[account,pwd],function(err,result){
+            if(err){
+                res.send('account or paasword no correct')
+                return
+            }
+            else{
+                const user = {name:account}
+                const accessToken = generateAccessToken(user)
+                // jwt.sign(user,process.env.ACCESS_TOKEN_SECRET)
+                const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
+                res.json({result:result,accessToken:accessToken , refreshToken:refreshToken})
+                console.log(user)
+                
+            }
+        }
+    )
+    
 })
 function authenticateToken(req,res,next){
     const authHeader = req.headers['authorization']
