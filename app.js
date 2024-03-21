@@ -18,6 +18,8 @@ var member = require('./router/member')
 var editmember = require('./router/editmember')
 var newordercontact = require('./router/newordercontact')
 var neworderproduct = require('./router/neworderproduct')
+var longcarelocation = require('./router/longcarelocation')
+var clinic = require('./router/clinic')
 
 //GET method
 app.use('/news',news)
@@ -26,6 +28,8 @@ app.use('/news',news)
 // app.use('/longcarelocation',longcarelocation)//
 app.use('/product',product)
 app.use('/member',member)
+app.use('/longcarelocation',longcarelocation)
+app.use('/clinic',clinic)
 
 
 // app.use('/editmember',editmember)
