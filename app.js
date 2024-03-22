@@ -21,6 +21,8 @@ var news = require('./router/news')
 var product = require('./router/product')
 var member = require('./router/member')
 var editmember = require('./router/editmember')
+var ordercontact = require('./router/ordercontact')
+var orderproduct = require('./router/orderproduct')
 var newordercontact = require('./router/newordercontact')
 var neworderproduct = require('./router/neworderproduct')
 var longcarelocation = require('./router/longcarelocation')
@@ -42,6 +44,9 @@ app.use('/clinic',clinic)
 // order info
 app.use('/newordercontact',newordercontact)
 app.use('/neworderproduct',neworderproduct)
+app.use('/ordercontact',ordercontact)
+app.use('/orderproduct',orderproduct)
+
 
 
 // app.use('/editmember',editmember)
