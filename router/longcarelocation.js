@@ -23,7 +23,7 @@ longcarelocation.get('/searchlongcare', function (req, res) {
 
     conn.query
     // 'select * from clinic where name like ? ', [`%${keyword}%`]
-    ('SELECT * FROM longcarelocation WHERE city LIKE ? AND section LIKE ? AND name LIKE ?', [`%${city}%`, `%${area}%`, `%${keyword}%`]
+    ('SELECT * FROM longcarelocation WHERE city LIKE ? AND section LIKE ? AND name LIKE ? Limit 100', [`%${city}%`, `%${area}%`, `%${keyword}%`]
     ,
      function (err, row) {
         console.log(err)
