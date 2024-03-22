@@ -27,6 +27,7 @@ var newordercontact = require('./router/newordercontact')
 var neworderproduct = require('./router/neworderproduct')
 var longcarelocation = require('./router/longcarelocation')
 var clinic = require('./router/clinic')
+var reserve = require('./router/reserve')
 // var order = require('./router/ordercontact')
 // var orderproduct = require('./router/orderproduct')
 
@@ -40,6 +41,7 @@ app.use('/product',product)
 app.use('/member',member)
 app.use('/longcarelocation',longcarelocation)
 app.use('/clinic',clinic)
+app.use('/reserve',reserve)
 
 // order info
 app.use('/newordercontact',newordercontact)

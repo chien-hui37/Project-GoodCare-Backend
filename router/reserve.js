@@ -14,17 +14,17 @@ var conn = mysql.createConnection({
 })
 
 reserve.post('/',function(req,res){
-    const { name, gender, idcard, birthday, height, weight, relationship, situation, 
-            medicalhistory, servicelocation  } = req.body;
+    const { applyname, email, phone, name, gender, birthday, height, weight, relationship, servicelocation, situation, 
+            medicalhistory} = req.body;
             console.log(name)
-    const sql = 'INSERT INTO reserve (name, gender, idcard, birthday, height, weight, relationship, situation, medicalhistory, servicelocation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    conn.query(sql, [name, gender, idcard, birthday, height, weight, relationship, situation, medicalhistory, servicelocation], function(err, result) {
+    const sql = 'INSERT INTO reserve (applyname, email, phone, name, gender, birthday, height, weight, relationship, servicelocation, situation, medicalhistory) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    conn.query(sql, [applyname, email, phone, name, gender, birthday, height, weight, relationship, servicelocation, situation, medicalhistory ], function(err, result) {
         if (err) {
             console.error(err);
             res.send('Error inserting data into database');
             return;
         }
-        // res.send('表單已送出');
+        res.send('ok')
     });
 })
 
