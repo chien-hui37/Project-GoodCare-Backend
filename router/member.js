@@ -37,7 +37,7 @@ member.post('/register',function(req,res){
 })
 
 
-/////////////////
+
 member.get('/login',authenticateToken,(req,res) => {
     // console.log(req.user.name)
     
@@ -58,8 +58,10 @@ member.post('/login',(req,res) => {
     const pwd = req.body.pwd
     conn.query(
         'select * from member where account= ? and pwd = ?',[account,pwd],function(err,result){
-            if(result){
+            if(result.length===0){
+
                 res.send('account or paasword no correct')
+                console.log( result)
                 return
             }
             else{

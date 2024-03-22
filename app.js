@@ -26,6 +26,7 @@ var neworderproduct = require('./router/neworderproduct')
 var longcarelocation = require('./router/longcarelocation')
 var clinic = require('./router/clinic')
 
+
 //GET method
 app.use('/news',news)
 // app.use('/news/:offset') //limit 10 offset 10
@@ -35,6 +36,7 @@ app.use('/product',product)
 app.use('/member',member)
 app.use('/longcarelocation',longcarelocation)
 app.use('/clinic',clinic)
+
 
 
 // app.use('/editmember',editmember)
