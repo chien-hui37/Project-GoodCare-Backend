@@ -25,6 +25,8 @@ var newordercontact = require('./router/newordercontact')
 var neworderproduct = require('./router/neworderproduct')
 var longcarelocation = require('./router/longcarelocation')
 var clinic = require('./router/clinic')
+// var order = require('./router/ordercontact')
+// var orderproduct = require('./router/orderproduct')
 
 
 //GET method
@@ -37,8 +39,9 @@ app.use('/member',member)
 app.use('/longcarelocation',longcarelocation)
 app.use('/clinic',clinic)
 
+// order info
+app.use('/newordercontact',newordercontact)
+app.use('/neworderproduct',neworderproduct)
 
 
 // app.use('/editmember',editmember)
-// app.use('/newordercontact',newordercontact)
-// app.use('/neworderproduct',neworderproduct)
