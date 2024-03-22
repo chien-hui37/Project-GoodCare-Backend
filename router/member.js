@@ -45,8 +45,6 @@ member.get('/login',authenticateToken,(req,res) => {
         if(err){
             console.error(err)
         }
-        // console.log(result.account)
-        // console.log(req.user.name)
         res.json(result.filter(p => p.account === req.user.name))
         
     })
@@ -96,7 +94,7 @@ function generateAccessToken(user) {
 member.post('/modify',function(req,res){
     const {account,removePwd} = req.body
     const pwd = removePwd
-    console.log(account,pwd)
+    // console.log(account,pwd)
     conn.query('update member set pwd = ? where account = ?',[pwd,account],function(err,result){
         if (err) {
             console.log('update err');
@@ -107,6 +105,34 @@ member.post('/modify',function(req,res){
             console.log(result)
             console.log('member update')
         }
+    })
+})
+
+member.post('/forget',function(req,res){
+    const {account, email} = req.body
+    // console.log(req.body)
+    conn.query('select * from member where account = ? and email = ?',[account,email],function(err,result){
+        if(result.length===0){
+
+            res.send('account or email no correct')
+            // console.log( result)
+            return
+        }
+        else{
+            res.send('forget ok')
+        }
+    })
+
+})
+
+member.post('/reforget',function(req,res){
+    const {pwd} = req.body
+    conn.query('update member set pwd =? ', [pwd], function(err,result){
+        if(err){
+            res.send('restart err')
+        }
+        res.send('restart ok')
+        console.log(result)
     })
 })
 
