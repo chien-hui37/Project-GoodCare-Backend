@@ -92,10 +92,11 @@ function generateAccessToken(user) {
 }
 
 member.post('/modify',function(req,res){
-    const {account,removePwd} = req.body
+    const {account,removePwd ,tel , address} = req.body
     const pwd = removePwd
     // console.log(account,pwd)
-    conn.query('update member set pwd = ? where account = ?',[pwd,account],function(err,result){
+    conn.query('update member set pwd = ? , tel = ? , address = ? where account = ?',[pwd,tel,address,account]
+    ,function(err,result){
         if (err) {
             console.log('update err');
             // res.send('Error inserting data into database');
@@ -104,6 +105,7 @@ member.post('/modify',function(req,res){
         else{
             console.log(result)
             console.log('member update')
+            res.send('member update')
         }
     })
 })
@@ -126,8 +128,9 @@ member.post('/forget',function(req,res){
 })
 
 member.post('/reforget',function(req,res){
-    const {pwd} = req.body
-    conn.query('update member set pwd =? ', [pwd], function(err,result){
+    
+    const {account,email,pwd} = req.body
+    conn.query('update member set pwd =? where account = ? and email = ?', [pwd,account,email], function(err,result){
         if(err){
             res.send('restart err')
         }
