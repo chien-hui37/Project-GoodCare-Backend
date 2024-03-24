@@ -13,12 +13,16 @@ var conn = mysql.createConnection({
 
 })
 
+
+
 reserve.post('/',function(req,res){
-    const { applyname, email, phone, name, gender, birthday, height, weight, relationship, servicelocation, situation, 
+    const { applyname, email, phone, relationship, name, gender, birthday, height, weight, servicelocation, situation, 
             medicalhistory} = req.body;
             console.log(name)
-    const sql = 'INSERT INTO reserve (applyname, email, phone, name, gender, birthday, height, weight, relationship, servicelocation, situation, medicalhistory) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    conn.query(sql, [applyname, email, phone, name, gender, birthday, height, weight, relationship, servicelocation, situation, medicalhistory ], function(err, result) {
+
+    
+    const sql = 'INSERT INTO reserve (applyname, email, phone, relationship, name, gender, birthday, height, weight, servicelocation, situation, medicalhistory) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    conn.query(sql, [applyname, email, phone, relationship, name, gender, birthday, height, weight, servicelocation, situation, medicalhistory ], function(err, result) {
         if (err) {
             console.error(err);
             res.send('Error inserting data into database');
