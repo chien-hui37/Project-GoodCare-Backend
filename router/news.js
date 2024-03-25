@@ -11,10 +11,16 @@ var conn = mysql.createConnection({
 })
 
 news.get('/',function(req,res){
-    conn.query('select * from news',[],function(err,result){
+    var {keyword} = req.query;
+    let sql = 'select * from news';
+    if (keyword){
+        sql += ' where title like ? or content like ?';
+        keyword = `%${keyword}%`;
+    }
+    conn.query(sql,[keyword,keyword],function(err,result){
         res.send(result)
-        
     })
 })
+
 
 module.exports = news;
