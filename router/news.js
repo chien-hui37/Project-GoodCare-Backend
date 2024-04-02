@@ -11,13 +11,16 @@ var conn = mysql.createConnection({
 })
 
 news.get('/',function(req,res){
-    var {keyword} = req.query;
-    let sql = 'select * from news';
-    if (keyword){
-        sql += ' where title like ? or content like ?';
-        keyword = `%${keyword}%`;
-    }
-    conn.query(sql,[keyword,keyword],function(err,result){
+    // var {keyword} = req.query;
+    // if (keyword){
+        //     sql += ' where title like ? or content like ? order by update desc';
+        //     keyword = `%${keyword}%`;
+        // }
+        // conn.query(sql,[keyword,keyword],function(err,result){
+            //     res.send(result)
+            // })
+    let sql = 'select * from news order by date desc';
+    conn.query(sql,function(err,result){
         res.send(result)
     })
 })
